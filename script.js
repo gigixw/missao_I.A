@@ -7,8 +7,31 @@ const textoResultado = document.querySelector('.texto-resultado');
 const perguntas = [
     {
     enunciado: "Em que lugar teve origem a palavra música?",
-    alternativas: ["Grécia", "China", "Brasil", "India"],
+    alternativas: ["Grécia", "China", "Brasil", "India"
+       {
+        texto: "Grécia",
+        afirmação: "Afirmação da alternativa 1"
+       }
+       
+
+
+
+
+
+
+
+
+
+
+
+],
     },
+    
+    
+    
+    
+    
+    
     {
     enunciado: "O teatro é uma linguagem de que arte?",
     alternativas: ["Literárias", "Cênicas", "Visuais", "Musicais"],
