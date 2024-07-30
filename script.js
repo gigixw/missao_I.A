@@ -10,19 +10,19 @@ const perguntas = [
     alternativas: [
         {
             texto: "China",
-            afirmação: "Afirmação da alternativa 1"
+            afirmação: ""
         },
         {
             texto: "Grécia",
-            afirmação: "Afirmação da alternativa 2"
+            afirmação: ""
         },
         {
             texto: "Brasil",
-            afirmação: "Afirmação da alternativa 3"
+            afirmação: ""
         },
         {
             texto: "India",
-            afirmação: "Afirmação da alternativa 4"
+            afirmação: ""
         },
     ]
 },
@@ -32,19 +32,19 @@ const perguntas = [
     alternativas: [
         {
             texto: "Literárias",
-            afirmação: "Afirmação da alternativa 1"
+            afirmação: ""
         },
         {
             texto: "Cênicas",
-            afirmação: "Afirmação da alternativa 2"
+            afirmação: ""
         },
         {
             texto: "Visuais",
-            afirmação: "Afirmação da alternativa 3"
+            afirmação: ""
         },
         {
             texto: "Musicais",
-            afirmação: "Afirmação da alternativa 4"
+            afirmação: ""
         },
     ]
 },
@@ -54,19 +54,19 @@ const perguntas = [
     alternativas: [
         {
             texto: "Contrapeso",
-            afirmação: "Afirmação da alternativa 1"
+            afirmação: ""
         },
         {
             texto: "Espaço",
-            afirmação: "Afirmação da alternativa 2"
+            afirmação: ""
         },
         {
             texto: "Ordem",
-            afirmação: "Afirmação da alternativa 3"
+            afirmação: ""
         },
         {
             texto: "Transferência",
-            afirmação: "Afirmação da alternativa 4"
+            afirmação: ""
         },
     ]
 },
@@ -74,10 +74,16 @@ const perguntas = [
 
     let atual = 0;
     let perguntaAtual;
+    let historiaFinal = "";
     
     function mostraPergunta() {
+        if (atual >= perguntas.length) {
+            mostraResultado();
+            return;
+        }
         perguntaAtual = perguntas [atual];
         caixaPerguntas.textContent = perguntaAtual.enunciado;
+        caixaAlternativas.textContent = " ";
         mostraAlternativas();
     }
     mostraPergunta();
@@ -86,10 +92,20 @@ const perguntas = [
             const botaoAlternativas = 
             document.createElement ("button");
             botaoAlternativas.textContent = alternativa.texto;
-            botaoAlternativas.addEventListener("click", function () {
-               atual++;
-               mostraPergunta();
-            });
+            botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
             caixaAlternativas.appendChild(botaoAlternativas);
         }
+    }
+
+    function respostaSelecionada(opcaoSelecionada) {
+        const afirmacoes = opcaoSelecionada.afirmação;
+        historiaFinal += afirmacoes + " ";
+        atual++;
+        mostraPergunta();
+    }
+
+    function mostraResultado() {
+        caixaPerguntas.textContent = "O cultural abrange várias áreas e dentre elas temos a arte, a música, o teatro, a dança e muitos outros. Todas elas conversando entre si, formam um lindo espetáculo.";
+        textoResultado.textContent = historiaFinal;
+        caixaAlternativas.textContent = "";
     }
